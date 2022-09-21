@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="The Cake Shop"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/round_corners_linear"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/cakelogo"
+                    android:background="@color/greencake"
+                    android:layout_marginBottom="20dp"
+                    />
+
+                <Button
+                    android:id="@+id/btnToOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_button_"
+                    app:backgroundTint="@null"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:text="Make an order"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/custom_button_"
+                    android:layout_gravity="center"
+                    android:text="Button"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:background="@drawable/custom_button_"
+                    android:layout_marginBottom="10dp"
+                    app:backgroundTint="@null"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Button"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
