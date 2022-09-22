@@ -16,15 +16,16 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:text="The Cake Shop"
-            android:textStyle="bold"
             android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:text="The Cake Shop"
             android:textColor="@color/black"
-            />
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
 
 

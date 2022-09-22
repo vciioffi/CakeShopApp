@@ -34,7 +34,7 @@ class CakesAdapter(val cakes : List<CakesRV>): RecyclerView.Adapter<CakesAdapter
                 binding.cantidad.text=(Integer.parseInt(binding.cantidad.text as String)+1).toString()
                 _totalprice += (cake.price.toDouble())
                 totalPrice.value = _totalprice
-
+                cake.count = (cake.count.toInt()+1).toString()
 
 
             }
@@ -47,6 +47,8 @@ class CakesAdapter(val cakes : List<CakesRV>): RecyclerView.Adapter<CakesAdapter
                         (Integer.parseInt(binding.cantidad.text as String) - 1).toString()
                     _totalprice -=(cake.price.toDouble())
                     totalPrice.value = _totalprice
+                    cake.count = (cake.count.toInt()-1).toString()
+
                 }
             }
 

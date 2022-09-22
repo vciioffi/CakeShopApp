@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
 import com.example.cakeshopapp.databinding.FragmentOrderBinding
@@ -19,6 +20,7 @@ import com.example.cakeshopapp.model.Cakes
 import com.example.cakeshopapp.recyclerviews.CakesAdapter
 import com.example.cakeshopapp.recyclerviews.CakesRV
 import com.example.cakeshopapp.viewmodel.OrdersViewModel
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -59,60 +61,74 @@ class OrderFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentOrderBinding.inflate(inflater)
         listCakes = arrayListOf()
-        sharedViewModel = OrdersViewModel(requireActivity().application)
+        val sharedViewModel = ViewModelProvider(requireActivity())[OrdersViewModel::class.java]
 
-        sharedViewModel.cakesList.observe(viewLifecycleOwner, Observer { it
-            println("vm $it")
-           val dblistcakes: List<Cakes> = it
-            val res: Resources = Resources.getSystem()
+        val room = CakeShopDb.getDatabase(this.requireActivity().applicationContext).cakeOrdersDAO()
 
-            for (i in dblistcakes){
+        lifecycleScope.launch{
 
-                // i need a string that is equals to the image name
-                var strPhoto: String = i.name.lowercase()
-                strPhoto = strPhoto.replace(" ","")
+            val dblistcakes1: List<Cakes> = room.getAllCakes().toMutableList()
+            sharedViewModel.updateCakesList(dblistcakes1)
+        }
 
-                //id of the image
-                val resID = resources.getIdentifier(strPhoto, "drawable", context?.packageName).toString()
+    sharedViewModel.cakesList.observe(viewLifecycleOwner, Observer { it
+        println("vm $it")
+       val dblistcakes: List<Cakes> = it
+        val res: Resources = Resources.getSystem()
 
-                listCakes.add(CakesRV(resID,i.name,i.price,"0"))
-            }
-            adapter = CakesAdapter(listCakes)
-            binding.recyclerView.adapter = adapter
-            binding.recyclerView.adapter!!.notifyDataSetChanged()
+        for (i in dblistcakes){
 
-            /*
-            I have created a MutableLiveData into the adapter so i can observe when the total price change
-             */
-            adapter.totalPrice.observe(viewLifecycleOwner, Observer{
-                binding.tvTotalprice.text = it.toString()
-            })
-        })
+            // i need a string that is equals to the image name
+            var strPhoto: String = i.name.lowercase()
+            strPhoto = strPhoto.replace(" ","")
 
+            //id of the image
+            val resID = resources.getIdentifier(strPhoto, "drawable", context?.packageName).toString()
 
+            listCakes.add(CakesRV(resID,i.name,i.price,"0"))
+        }
+        adapter = CakesAdapter(listCakes)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter!!.notifyDataSetChanged()
 
-        binding.recyclerView.layoutManager = GridLayoutManager(this.context,2)
-
-        return binding.root
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OrderFragment.
+        /*
+        I have created a MutableLiveData into the adapter so i can observe when the total price change
          */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrderFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        adapter.totalPrice.observe(viewLifecycleOwner, Observer{
+            binding.tvTotalprice.text = it.toString()
+        })
+    })
+
+
+
+    binding.recyclerView.layoutManager = GridLayoutManager(this.context,2)
+
+    binding.buttonCheckout.setOnClickListener {
+        sharedViewModel.updateCheckoutList(adapter.cakes)
+        sharedViewModel.updateTotalPrice(binding.tvTotalprice.text.toString().toDouble())
+        findNavController().navigate(R.id.action_orderFragment_to_checkoutFragment)
+
     }
+    return binding.root
+}
+
+companion object {
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment OrderFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    @JvmStatic
+    fun newInstance(param1: String, param2: String) =
+        OrderFragment().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM1, param1)
+                putString(ARG_PARAM2, param2)
+            }
+        }
+}
 }

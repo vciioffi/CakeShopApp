@@ -2,6 +2,7 @@ package com.example.cakeshopapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.cakeshopapp.model.CakeShopDb
@@ -12,8 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //val room = Room.databaseBuilder(this,CakeShopDb::class.java,"Cakes-Orders").build()
+        supportActionBar?.hide()
 
        // val room = CakeShopDb.getDatabase(this).cakeOrdersDAO()
 
