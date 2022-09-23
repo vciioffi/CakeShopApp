@@ -1,17 +1,20 @@
-package com.example.cakeshopapp.model
+package com.example.cakeshopapp.model.room
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.cakeshopapp.model.CakesOrdersDAO
 
 @Database(
-    entities = [Cakes::class,Orders::class,OrderCakes::class],
+    entities = [Cakes::class, Orders::class, OrderCakes::class,OrderInfo::class],
     version = 1
+
 )
 abstract class CakeShopDb: RoomDatabase(){
 
-    abstract fun cakeOrdersDAO():CakesOrdersDAO
+    abstract fun cakeOrdersDAO(): CakesOrdersDAO
 
     companion object{
 
@@ -30,7 +33,7 @@ abstract class CakeShopDb: RoomDatabase(){
                     CakeShopDb::class.java,
                     "Cakes_Orders"
                 ).build()
-                INSTANCE=instance
+                INSTANCE =instance
                 return instance
             }
         }

@@ -7,20 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.Room
 import com.example.cakeshopapp.databinding.FragmentOrderBinding
-import com.example.cakeshopapp.model.CakeShopDb
-import com.example.cakeshopapp.model.Cakes
+import com.example.cakeshopapp.model.room.CakeShopDb
+import com.example.cakeshopapp.model.room.Cakes
 import com.example.cakeshopapp.recyclerviews.CakesAdapter
 import com.example.cakeshopapp.recyclerviews.CakesRV
 import com.example.cakeshopapp.viewmodel.OrdersViewModel
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match

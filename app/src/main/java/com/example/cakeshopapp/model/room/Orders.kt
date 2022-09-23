@@ -1,13 +1,12 @@
-package com.example.cakeshopapp.model
+package com.example.cakeshopapp.model.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity
-data class Cakes(
-   @PrimaryKey(autoGenerate = true)
-    val id: Int?,
+data class Orders(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val name : String,
     val price: String
 

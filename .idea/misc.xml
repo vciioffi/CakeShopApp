@@ -13,7 +13,9 @@
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_checkout.xml" value="0.3500905797101449" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_order.xml" value="0.33" />
+        <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_order_history.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/grid_item_cakes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/orders_item.xml" value="0.365625" />
       </map>
     </option>
   </component>

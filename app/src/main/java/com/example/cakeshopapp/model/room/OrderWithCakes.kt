@@ -1,4 +1,4 @@
-package com.example.cakeshopapp.model
+package com.example.cakeshopapp.model.room
 
 import androidx.room.Embedded
 import androidx.room.Entity

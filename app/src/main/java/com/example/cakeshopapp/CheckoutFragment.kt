@@ -1,25 +1,23 @@
 package com.example.cakeshopapp
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.cakeshopapp.databinding.FragmentCheckoutBinding
-import com.example.cakeshopapp.databinding.FragmentOrderBinding
-import com.example.cakeshopapp.recyclerviews.CakesAdapter
+import com.example.cakeshopapp.model.room.CakeShopDb
+import com.example.cakeshopapp.model.room.OrderInfo
 import com.example.cakeshopapp.recyclerviews.CakesCheckoutAdapter
 import com.example.cakeshopapp.recyclerviews.CakesRV
 import com.example.cakeshopapp.viewmodel.OrdersViewModel
+import kotlinx.coroutines.launch
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,15 +65,37 @@ class CheckoutFragment : Fragment() {
 
         binding.btnConfirmOrder.setOnClickListener {
 
-            confirmOrder()
+            lifecycleScope.launch{
+
+                confirmOrder(sharedViewModel,binding)
+
+            }
         }
 
         return binding.root
     }
 
-    private fun confirmOrder() {
+    private suspend fun confirmOrder(sharedViewModel: OrdersViewModel, binding: FragmentCheckoutBinding) {
 
+        val room = CakeShopDb.getDatabase(this.requireActivity().applicationContext).cakeOrdersDAO()
+
+        val listcakeIterat: List<CakesRV> = sharedViewModel.cakesListCheckout.value!!
+        var itemCount: Int = 0
+        var totalCount: Int =0
+
+        for (i in listcakeIterat){
+            if (i.count != "0"){
+                itemCount++
+
+            }
+            totalCount += (i.count.toInt())
+        }
+
+        room.insertOrder(OrderInfo(null,itemCount,totalCount,binding.buttonPrice.text.toString(),Calendar.getInstance().time.toString()))
         Toast.makeText(requireActivity().applicationContext, "Order saved correctly!!", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.action_checkoutFragment_to_homeFragment)
+
+        requireActivity().viewModelStore.clear();
 
     }
 

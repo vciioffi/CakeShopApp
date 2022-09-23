@@ -1,12 +1,8 @@
 package com.example.cakeshopapp.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.*
-import androidx.room.Room
-import com.example.cakeshopapp.model.CakeShopDb
-import com.example.cakeshopapp.model.Cakes
+import com.example.cakeshopapp.model.room.Cakes
 import com.example.cakeshopapp.recyclerviews.CakesRV
-import kotlinx.coroutines.launch
 
 
 class OrdersViewModel(): ViewModel() {
