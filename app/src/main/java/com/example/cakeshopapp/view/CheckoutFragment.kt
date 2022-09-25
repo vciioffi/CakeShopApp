@@ -1,4 +1,4 @@
-package com.example.cakeshopapp
+package com.example.cakeshopapp.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cakeshopapp.R
 import com.example.cakeshopapp.databinding.FragmentCheckoutBinding
 import com.example.cakeshopapp.model.room.CakeShopDb
 import com.example.cakeshopapp.model.room.OrderInfo

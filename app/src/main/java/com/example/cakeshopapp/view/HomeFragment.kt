@@ -1,4 +1,4 @@
-package com.example.cakeshopapp
+package com.example.cakeshopapp.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.cakeshopapp.R
 import com.example.cakeshopapp.databinding.FragmentHomeBinding
-import com.example.cakeshopapp.databinding.FragmentOrderBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

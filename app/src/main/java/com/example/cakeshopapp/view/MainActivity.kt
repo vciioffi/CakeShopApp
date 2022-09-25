@@ -1,12 +1,8 @@
-package com.example.cakeshopapp
+package com.example.cakeshopapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
-import com.example.cakeshopapp.model.room.CakeShopDb
-import com.example.cakeshopapp.model.room.Cakes
-import kotlinx.coroutines.launch
+import com.example.cakeshopapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
