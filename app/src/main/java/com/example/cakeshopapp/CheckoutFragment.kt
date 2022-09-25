@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CheckoutFragment : Fragment() {
+    override fun onStop() {
+        requireActivity().viewModelStore.clear()
+        super.onStop()
+    }
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,6 +48,17 @@ class CheckoutFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
+            // This callback will only be called when MyFragment is at least Started.
+            val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+                requireActivity().viewModelStore.clear()
+                println("atras")
+
+            }
+
+            callback.isEnabled = true
+            // The callback can be enabled or disabled here or in the lambda
+
         }
     }
 

@@ -70,7 +70,7 @@
                     android:background="@drawable/custom_button_"
                     android:layout_marginBottom="10dp"
                     app:backgroundTint="@null"
-
+                    android:id="@+id/btnToCakeInfo"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="CAKES INFO"/>

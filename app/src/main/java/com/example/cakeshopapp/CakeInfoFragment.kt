@@ -5,9 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.cakeshopapp.databinding.FragmentHomeBinding
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cakeshopapp.databinding.FragmentCakeInfoBinding
 import com.example.cakeshopapp.databinding.FragmentOrderBinding
+import com.example.cakeshopapp.model.room.CakeShopDb
+import com.example.cakeshopapp.model.room.Cakes
+import com.example.cakeshopapp.recyclerviews.CakesAdapter
+import com.example.cakeshopapp.recyclerviews.CakesInfoAdapter
+import com.example.cakeshopapp.recyclerviews.CakesRV
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,13 +23,15 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
+ * Use the [CakeInfoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class CakeInfoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var listCakes: MutableList<Cakes>
+    private lateinit var adapter: CakesInfoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,21 +46,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentHomeBinding.inflate(inflater)
+        val binding = FragmentCakeInfoBinding.inflate(inflater)
+        listCakes = arrayListOf()
 
-        binding.btnToOrder.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_orderFragment)
+        val room = CakeShopDb.getDatabase(this.requireActivity().applicationContext).cakeOrdersDAO()
 
-        }
-        binding.btnOrdersHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_orderHistoryFragment)
+        lifecycleScope.launch{
 
-        }
+            listCakes = room.getAllCakes().toMutableList()
 
-        binding.btnToCakeInfo.setOnClickListener {
-
-            findNavController().navigate(R.id.action_homeFragment_to_cakeInfoFragment)
-
+            adapter = CakesInfoAdapter(listCakes, requireContext())
+            binding.recyclerViewCakeInfo.adapter = adapter
+            binding.recyclerViewCakeInfo.layoutManager = LinearLayoutManager(requireActivity())
+            binding.recyclerViewCakeInfo.adapter!!.notifyDataSetChanged()
         }
 
         return binding.root
@@ -64,12 +71,12 @@ class HomeFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
+         * @return A new instance of fragment CakeInfoFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
+            CakeInfoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

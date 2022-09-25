@@ -9,6 +9,7 @@ data class Cakes(
    @PrimaryKey(autoGenerate = true)
     val id: Int?,
     val name : String,
-    val price: String
+    val price: String,
+    val description: String
 
 )

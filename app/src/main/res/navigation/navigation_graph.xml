@@ -18,6 +18,10 @@
             android:id="@+id/action_homeFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_cakeInfoFragment"
+            app:destination="@id/cakeInfoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -44,4 +48,9 @@
         android:name="com.example.cakeshopapp.OrderHistoryFragment"
         android:label="fragment_order_history"
         tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/cakeInfoFragment"
+        android:name="com.example.cakeshopapp.CakeInfoFragment"
+        android:label="fragment_cake_info"
+        tools:layout="@layout/fragment_cake_info" />
 </navigation>

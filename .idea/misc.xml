@@ -8,8 +8,10 @@
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/drawable/round_corners_linear.xml" value="0.2985" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/activity_main.xml" value="0.3432971014492754" />
+        <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/cakesinfo_item.xml" value="0.365625" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/checkout_item.xml" value="0.3500905797101449" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_blank2.xml" value="0.3432971014492754" />
+        <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_cake_info.xml" value="0.18" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_checkout.xml" value="0.3500905797101449" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Cioffi/AndroidStudioProjects/CakeShopApp/app/src/main/res/layout/fragment_order.xml" value="0.33" />
